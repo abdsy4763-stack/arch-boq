@@ -934,7 +934,7 @@ function FormulaAndFinishStudio({
       ["totalWindowArea", 3.6],
       ["totalDoorWidth", 0.9],
     ]);
-    return evaluateFormula(formulaExpr, sampleVars);
+    return evaluateFormula(formulaExpr, sampleVars).value;
   }, [formulaExpr]);
 
   const insertToken = (token: string) => {
