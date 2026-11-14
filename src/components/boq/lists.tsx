@@ -419,10 +419,10 @@ async function downloadProjectSummaryXlsx(summary: ReturnType<typeof buildProjec
     [CREATOR_SIGNATURE, COPYRIGHT_TEXT],
   ];
   
-  const workbook = XLSX.utils.book_new();
-  // تجاوز فحص TypeScript لخاصية Views
-  (workbook as any).Views = [{ RTL: true }];
-
+ const workbook = XLSX.utils.book_new();
+  // @ts-ignore
+  workbook.Views = [{ RTL: true }];
+  
   const itemsSheet = XLSX.utils.aoa_to_sheet(itemRows);
   const blocksSheet = XLSX.utils.aoa_to_sheet(blockRows);
   
