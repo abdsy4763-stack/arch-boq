@@ -28,7 +28,7 @@ import type {
   StructuralRow,
   TabId,
 } from "./types";
-
+import { parseAndValidateBackup } from "./io";
 type State = {
   panel: PanelState;
   blocks: BlockRecord[];
