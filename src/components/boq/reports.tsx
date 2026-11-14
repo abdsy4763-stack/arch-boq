@@ -14,11 +14,11 @@ import * as XLSX from "xlsx-js-style";
 import { Printer as NativePrinter } from "@capgo/capacitor-printer";
 import { Capacitor } from "@capacitor/core";
 import {
-  downloadBinary,
   fmt,
   fmtLoose,
   structuralKpis,
 } from "@/lib/boq/engine";
+import { downloadBinary } from "@/lib/boq/io";
 import { COPYRIGHT_TEXT, CREATOR_SIGNATURE } from "@/lib/boq/branding";
 import { useBoq } from "@/lib/boq/store";
 import type { BlockRecord, ReportLine, ReportSettings } from "@/lib/boq/types";
