@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", "Noto Naskh Arabic", "Noto Sans Arabic", "Segoe UI", sans-serif;
+  --color-navy: #1f3a4d;
+  --color-slate: #2c3e50;
+  --color-on-navy: #f4f7fa;
+  --color-teal: #0f6e56;
+  --color-teal-deep: #0b5344;
+  --color-on-teal: #f3faf7;
+  --color-blue: #2e5a73;
+  --color-band: #f4f7fa;
+  --color-line: #d5dde5;
+  --color-input: #f8fafc;
+  --color-paper: #f3f6f8;
+  --color-ink: #1f2d3a;
+  --color-muted: #5c6b7a;
+  --color-amber: #b9770e;
+  --color-amber-bg: #fdf6e8;
+  --color-danger: #c0392b;
+  --color-danger-bg: #fdecea;
+  --color-ok: #1e7a46;
+  --color-ok-bg: #e8f5e9;
+  --color-card: #ffffff;
+  --radius-card: 0.875rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    direction: rtl;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  select {
+    min-width: 0;
+    max-width: 100%;
+    direction: rtl;
+    text-align: right;
+    text-overflow: ellipsis;
+  }
+
+  select option {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: end;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+}
