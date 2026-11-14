@@ -619,7 +619,7 @@ async function downloadReportXlsx(
   styleBoqSheet(sheet, rows.length);
   const workbook = XLSX.utils.book_new();
   // @ts-ignore
-  workbook.Views = [{ RTL: true }];
+  Object.assign(workbook, { Views: [{ RTL: true }] });
   
   XLSX.utils.book_append_sheet(workbook, sheet, which === "detail" ? "التفاصيل" : "التجميع");
   const output = XLSX.write(workbook, { bookType: "xlsx", type: "array" }) as ArrayBuffer;
@@ -635,7 +635,7 @@ async function downloadFullWorkbookXlsx(
   settings: ReportSettings,
 ): Promise<void> {
   const workbook = XLSX.utils.book_new();
-  (workbook as any).Views = [{ RTL: true }];
+  Object.assign(workbook, { Views: [{ RTL: true }] });
 
   // الورقة 1: التفاصيل
   const detailRows = reportRows(block, "detail", settings);
