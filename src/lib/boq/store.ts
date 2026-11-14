@@ -128,6 +128,7 @@ const DEFAULT_CUSTOM_FORMULAS: FormulaDefinition[] = [
 export const useBoq = create<State>()(
   persist(
     (set, get) => ({
+      backupSnapshot: null,
       panel: emptyPanel(),
       blocks: [],
       activeBlockId: null,
