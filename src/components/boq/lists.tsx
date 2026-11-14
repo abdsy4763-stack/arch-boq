@@ -419,10 +419,8 @@ async function downloadProjectSummaryXlsx(summary: ReturnType<typeof buildProjec
     [CREATOR_SIGNATURE, COPYRIGHT_TEXT],
   ];
   
- const workbook = XLSX.utils.book_new();
-  // @ts-ignore
-  Object.assign(workbook, { Views: [{ RTL: true }] });
-  
+  const workbook = XLSX.utils.book_new();
+
   const itemsSheet = XLSX.utils.aoa_to_sheet(itemRows);
   const blocksSheet = XLSX.utils.aoa_to_sheet(blockRows);
   
