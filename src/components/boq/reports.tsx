@@ -618,8 +618,9 @@ async function downloadReportXlsx(
   const sheet = XLSX.utils.aoa_to_sheet(rows);
   styleBoqSheet(sheet, rows.length);
   const workbook = XLSX.utils.book_new();
-  // تجاوز فحص TypeScript لخاصية Views
-  (workbook as any).Views = [{ RTL: true }];
+  // @ts-ignore
+  workbook.Views = [{ RTL: true }];
+  
   XLSX.utils.book_append_sheet(workbook, sheet, which === "detail" ? "التفاصيل" : "التجميع");
   const output = XLSX.write(workbook, { bookType: "xlsx", type: "array" }) as ArrayBuffer;
   await downloadBinary(
