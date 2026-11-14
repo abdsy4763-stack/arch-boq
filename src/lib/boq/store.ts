@@ -330,6 +330,63 @@ export const useBoq = create<State>()(
                 : `تم توليد تقرير «${name}» — ${record.lines.length} بنداً (معماري وإنشائي).`,
         });
       },
+      exportUnifiedProject: () => {
+    const state = get();
+    const backup = {
+      version: 2,
+      blocks: state.blocks,
+      patches: state.patches,
+      customItems: state.customItems,
+      hiddenCodes: state.hiddenCodes,
+      wasteOverrides: state.wasteOverrides,
+      formulaDefinitions: state.formulaDefinitions,
+      finishDefinitions: state.finishDefinitions,
+      reportSettings: state.reportSettings,
+    };
+    return JSON.stringify(backup, null, 2);
+  },
+
+  importProjectSafely: (jsonString: string) => {
+    const result = parseAndValidateBackup(jsonString);
+    if (!result.success || !result.data) {
+      return { success: false, message: result.error ?? "خطأ غير معروف" };
+    }
+
+    const currentStateJson = get().exportUnifiedProject();
+    
+    set({
+      backupSnapshot: currentStateJson,
+      blocks: result.data.blocks,
+      patches: result.data.patches,
+      customItems: result.data.customItems,
+      hiddenCodes: result.data.hiddenCodes,
+      wasteOverrides: result.data.wasteOverrides,
+      formulaDefinitions: result.data.formulaDefinitions,
+      finishDefinitions: result.data.finishDefinitions,
+      reportSettings: result.data.reportSettings,
+    });
+    return { success: true };
+  },
+
+  undoImport: () => {
+    const snapshot = get().backupSnapshot;
+    if (!snapshot) return;
+    
+    const result = parseAndValidateBackup(snapshot);
+    if (result.success && result.data) {
+      set({
+        backupSnapshot: null,
+        blocks: result.data.blocks,
+        patches: result.data.patches,
+        customItems: result.data.customItems,
+        hiddenCodes: result.data.hiddenCodes,
+        wasteOverrides: result.data.wasteOverrides,
+        formulaDefinitions: result.data.formulaDefinitions,
+        finishDefinitions: result.data.finishDefinitions,
+        reportSettings: result.data.reportSettings,
+      });
+    }
+  },
       loadBlock: (id) => {
         const block = get().blocks.find((item) => item.id === id);
         if (!block) return;
