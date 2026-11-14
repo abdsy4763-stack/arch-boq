@@ -19,12 +19,12 @@ import {
   ARCH_VARIABLES_INFO,
   buildProjectSummary,
   describeFormulaAr,
-  downloadBinary,
   evaluateFormula,
   fmt,
   fmtLoose,
   STRUCT_VARIABLES_INFO,
 } from "@/lib/boq/engine";
+import { downloadBinary } from "@/lib/boq/io";
 import { useBoq } from "@/lib/boq/store";
 import type {
   CatalogItem,
