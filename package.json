@@ -11,6 +11,7 @@
     "android:open": "npx cap open android"
   },
   "dependencies": {
+    "zod": "^3.22.4",
     "@capacitor/android": "^6.0.0",
     "@capacitor/core": "^6.0.0",
     "@capacitor/filesystem": "^8.1.5",
