@@ -96,6 +96,61 @@ export function StructuralView() {
         </div>
 
         {showPricing ? (
+          <div className="mt-4 rounded-lg border border-line bg-band/40 p-3">
+            <h3 className="mb-2 text-xs font-bold text-teal">
+              إعدادات الأسعار الإفرادية ونسب الهدر وعيار الخلطة
+            </h3>
+            <div className="grid gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+              <Field
+                label="سعر م³ بيتون مسلح"
+                value={String(pricing.rcConcretePrice)}
+                onChange={(v) => setStructuralPricing({ rcConcretePrice: Number(v) || 0 })}
+              />
+              <Field
+                label="سعر م³ بيتون نظافة"
+                value={String(pricing.blindingPrice)}
+                onChange={(v) => setStructuralPricing({ blindingPrice: Number(v) || 0 })}
+              />
+              <Field
+                label="سعر م² القالب الخشبي"
+                value={String(pricing.formworkPrice)}
+                onChange={(v) => setStructuralPricing({ formworkPrice: Number(v) || 0 })}
+              />
+              <Field
+                label="سعر طن الحديد"
+                value={String(pricing.steelTonPrice)}
+                onChange={(v) => setStructuralPricing({ steelTonPrice: Number(v) || 0 })}
+              />
+              <Field
+                label="سعر م³ الحفر"
+                value={String(pricing.excavationPrice)}
+                onChange={(v) => setStructuralPricing({ excavationPrice: Number(v) || 0 })}
+              />
+              <Field
+                label="سعر م³ الردم/السواتر"
+                value={String(pricing.backfillPrice)}
+                onChange={(v) => setStructuralPricing({ backfillPrice: Number(v) || 0 })}
+              />
+              <Field
+                label="هدر البيتون %"
+                value={String(pricing.concreteWastePct)}
+                onChange={(v) => setStructuralPricing({ concreteWastePct: Number(v) || 0 })}
+              />
+              <Field
+                label="هدر الحديد %"
+                value={String(pricing.steelWastePct)}
+                onChange={(v) => setStructuralPricing({ steelWastePct: Number(v) || 0 })}
+              />
+              <Field
+                label="عيار الإسمنت (كغ/م³)"
+                value={String(pricing.cementGradeKg)}
+                onChange={(v) => setStructuralPricing({ cementGradeKg: Number(v) || 350 })}
+              />
+            </div>
+          </div>
+        ) : null}
+      </Card>
+        {showPricing ? (
    
 
         {showPricing ? (
