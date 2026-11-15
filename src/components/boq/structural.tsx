@@ -691,7 +691,7 @@ function StructuralRowCard({
                           Φ{d}
                         </option>
                       ))}
-                    select>
+                    </select>
                   </div>
                   <Field
                     label="العدد"
