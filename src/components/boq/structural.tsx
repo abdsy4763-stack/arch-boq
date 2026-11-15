@@ -95,7 +95,7 @@ export function StructuralView() {
               onChange={(val) => setBlockField("blockName", val)}
             />
           </div>
-        ) : null}
+   
 
         {showPricing ? (
           <div className="mt-4 rounded-lg border border-line bg-band/40 p-3">
