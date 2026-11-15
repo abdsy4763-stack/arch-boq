@@ -768,7 +768,7 @@ function CatalogAdminView() {
                 className="h-10 rounded-lg border border-line bg-card px-2 text-xs font-semibold"
               >
                 <option value="">كل الأقسام ({items.length})</option>
-                {CATEGORIES.map((item) => (
+                {dynamicCategories.map((item) => (
                   <option key={item} value={item}>
                     {item}
                   </option>
@@ -849,7 +849,7 @@ function CatalogAdminView() {
                   className="h-11 w-full rounded-lg border border-line bg-input px-3 text-sm"
                 />
                 <datalist id="categories">
-                  {CATEGORIES.map((item) => (
+                  {dynamicCategories.map((item) => (
                     <option key={item} value={item} />
                   ))}
                 </datalist>
