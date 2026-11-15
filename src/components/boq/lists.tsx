@@ -583,6 +583,11 @@ function CatalogAdminView() {
     () => effectiveItems(patches, customItems, hiddenCodes),
     [patches, customItems, hiddenCodes],
   );
+  // استخراج الأقسام الفريدة ديناميكياً من قاعدة البيانات الحالية
+  const dynamicCategories = useMemo(() => {
+    return Array.from(new Set(items.map((item) => item.category))).filter(Boolean).sort();
+  }, [items]);
+  
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return items.filter((item) => {
