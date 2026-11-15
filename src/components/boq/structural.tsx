@@ -86,15 +86,16 @@ export function StructuralView() {
           </div>
         </div>
 
-        {!panel.blockName.trim() ? (
-          <div className="mt-3 max-w-sm">
-            <TextField
-              label="اسم الكتلة / المشروع (مطلوب لحفظ التقرير)"
-              value={panel.blockName}
-              placeholder="مثال: البلوك السكني A"
-              onChange={(val) => setBlockField("blockName", val)}
-            />
-          </div>
+        <div className="mt-3 max-w-sm">
+          <TextField
+            label="اسم الكتلة / المشروع (مطلوب لحفظ التقرير)"
+            value={panel.blockName}
+            placeholder="مثال: البلوك السكني A"
+            onChange={(val) => setBlockField("blockName", val)}
+          />
+        </div>
+
+        {showPricing ? (
    
 
         {showPricing ? (
