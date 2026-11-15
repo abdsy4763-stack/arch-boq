@@ -561,12 +561,12 @@ function CatalogAdminView() {
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(0);
   const [bulkPct, setBulkPct] = useState("");
-  const [draft, setDraft] = useState({
+ const [draft, setDraft] = useState({
     code: "",
     desc: "",
     unit: "م2",
     price: "",
-    category: CATEGORIES[0] ?? "",
+    category: "",
   });
   const [error, setError] = useState<string | null>(null);
   const [importMessage, setImportMessage] = useState<string | null>(null);
