@@ -6,14 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\"",
+    "build:android": "npm run typecheck && vite build",
+    "cap:sync": "npm run build && cap sync android",
     "preview": "vite preview",
-    "android:sync": "npm run build && npx cap sync android",
-    "android:open": "npx cap open android"
+    "android:sync": "npm run cap:sync",
+    "android:open": "cap open android"
   },
   "dependencies": {
     "zod": "^3.22.4",
-    "@capacitor/android": "^6.0.0",
-    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
     "@capacitor/filesystem": "^8.1.5",
     "@capacitor/share": "^8.0.3",
     "@capgo/capacitor-printer": "^8.1.10",
@@ -26,8 +30,9 @@
     "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^6.0.0",
+    "@capacitor/cli": "^8.0.0",
     "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
