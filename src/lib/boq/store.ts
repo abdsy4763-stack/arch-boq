@@ -219,7 +219,7 @@ export const useBoq = create<State>()(
       removeExtra: (id) =>
         set({ panel: { ...get().panel, extras: (get().panel.extras ?? []).filter((line) => line.id !== id) } }),
 
-      addStructuralElement: (kind = "footing") =>
+      addStructuralElement: (kind: StructuralElementKind = "footing") =>
         set({
           panel: {
             ...get().panel,
@@ -256,7 +256,7 @@ export const useBoq = create<State>()(
             structuralElements: (get().panel.structuralElements ?? []).filter((el) => el.id !== id),
           },
         }),
-      addEarthwork: (kind = "excavation") =>
+      addEarthwork: (kind: EarthworkRow["kind"] = "excavation") =>
         set({
           panel: {
             ...get().panel,
