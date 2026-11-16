@@ -87,7 +87,21 @@ type State = {
   loadDemoProject: () => void;
   setReportSettings: (patch: Partial<ReportSettings>) => void;
   replaceAll: (data: Partial<Pick<State, "panel" | "blocks" | "patches" | "customItems" | "hiddenCodes" | "wasteOverrides" | "formulaDefinitions" | "finishDefinitions" | "templates" | "reportSettings">>) => void;
+  backupSnapshot: string | null;
+  exportUnifiedProject: () => string;
+  importProjectSafely: (jsonString: string) => { success: boolean; message?: string };
+  undoImport: () => void;
 };
+
+/** إعدادات التقرير القادمة من ملف نسخة احتياطية قد تنقصها حقول: نكمّلها بالقيم الافتراضية. */
+function normalizeReportSettings(raw: unknown): ReportSettings {
+  const r = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  return {
+    companyName: typeof r.companyName === "string" ? r.companyName : "",
+    projectName: typeof r.projectName === "string" ? r.projectName : "",
+    signatureLabel: typeof r.signatureLabel === "string" ? r.signatureLabel : "اعتماد المهندس",
+  };
+}
 
 function nid(prefix: string): string {
   return `${prefix}-${Math.random().toString(36).slice(2, 8)}${Date.now().toString(36).slice(-4)}`;
@@ -363,7 +377,7 @@ export const useBoq = create<State>()(
       wasteOverrides: result.data.wasteOverrides,
       formulaDefinitions: result.data.formulaDefinitions,
       finishDefinitions: result.data.finishDefinitions,
-      reportSettings: result.data.reportSettings,
+      reportSettings: normalizeReportSettings(result.data.reportSettings),
     });
     return { success: true };
   },
@@ -383,7 +397,7 @@ export const useBoq = create<State>()(
         wasteOverrides: result.data.wasteOverrides,
         formulaDefinitions: result.data.formulaDefinitions,
         finishDefinitions: result.data.finishDefinitions,
-        reportSettings: result.data.reportSettings,
+        reportSettings: normalizeReportSettings(result.data.reportSettings),
       });
     }
   },
